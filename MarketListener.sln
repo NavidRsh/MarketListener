@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketListener.Domain", "src\MarketListener.Domain\MarketListener.Domain.csproj", "{E35B04A6-D9F1-4888-A7CD-DCEA533B4EAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketListener.Application", "src\MarketListener.Application\MarketListener.Application.csproj", "{22DE03C4-2DA6-468A-8720-27B618F8056A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{E35B04A6-D9F1-4888-A7CD-DCEA533B4EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E35B04A6-D9F1-4888-A7CD-DCEA533B4EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E35B04A6-D9F1-4888-A7CD-DCEA533B4EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22DE03C4-2DA6-468A-8720-27B618F8056A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DE03C4-2DA6-468A-8720-27B618F8056A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DE03C4-2DA6-468A-8720-27B618F8056A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DE03C4-2DA6-468A-8720-27B618F8056A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E53F842B-04C0-4010-AD04-30E910F47C64} = {9BE1C20D-CA1D-4451-BA4A-36C2FB1F1F3B}
 		{E35B04A6-D9F1-4888-A7CD-DCEA533B4EAC} = {C03C87B1-310C-45C5-BEF7-0FB28A99B43A}
+		{22DE03C4-2DA6-468A-8720-27B618F8056A} = {69F1D78D-B9AB-4A03-8E1D-7A771F48BA49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD5D3D2E-EAA3-47B3-8F49-3907429EC22B}

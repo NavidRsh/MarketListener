@@ -1,4 +1,4 @@
-﻿namespace Bond.Domain.Commons;
+﻿namespace MarketListener.Domain.Common;
 
 using Interfaces;
 
