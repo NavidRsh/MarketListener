@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.*-*" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MarketListener.Application\MarketListener.Application.csproj" />
+	  <ProjectReference Include="..\MarketListener.Domain\MarketListener.Domain.csproj" />
+	  <ProjectReference Include="..\MarketListener.Persistence.Ef\MarketListener.Persistence.Ef.csproj" />
+	</ItemGroup>
+	
+</Project>

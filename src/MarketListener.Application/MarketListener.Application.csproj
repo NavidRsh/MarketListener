@@ -10,7 +10,6 @@
 		<Folder Include="Common\Converters\" />
 		<Folder Include="Common\Models\" />
 		<Folder Include="Features\" />
-		<Folder Include="Gateways\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -20,6 +19,7 @@
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Sieve" Version="3.0.0-beta0015" />
 	</ItemGroup>
 
 	<ItemGroup>
