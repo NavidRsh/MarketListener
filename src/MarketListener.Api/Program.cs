@@ -1,23 +1,33 @@
 using Microsoft.AspNetCore.OpenApi;
 using MarketListener.Application;
 using static MarketListener.Application.StartupModule;
-using static MarketListener.Persistence.Ef.StartupModule; 
+using static MarketListener.Persistence.Ef.StartupModule;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//ConfigureServices 
 builder.Services.AddApplicationServices()
-    .AddPersistenceEfServices(builder.Configuration); 
+    .AddPersistenceEfServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//Configure
+
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 var summaries = new[]
 {
@@ -27,7 +37,7 @@ var summaries = new[]
 app.MapGet("/", () => "Hello World!")
     .WithOpenApi(); ;
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/weatherforecast", (int id) =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
