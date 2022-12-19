@@ -13,10 +13,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
 		<PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
 		<PackageReference Include="FluentValidation" Version="11.2.2" />
-		<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
 		<PackageReference Include="Sieve" Version="3.0.0-beta0015" />

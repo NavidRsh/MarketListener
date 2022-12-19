@@ -1,8 +1,13 @@
-using Microsoft.AspNetCore.OpenApi;
 using MarketListener.Application;
 using static MarketListener.Application.StartupModule;
 using static MarketListener.Persistence.Ef.StartupModule;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.OpenApi.Models;
+using FluentValidation.AspNetCore;
+using System.Runtime.CompilerServices;
+using System.Reflection;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +16,45 @@ builder.Services.AddApplicationServices()
     .AddPersistenceEfServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme()
+    {
+        Description = "JWT Authorization header using the bearer scheme",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey
+    });
 
-builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme()
+            {
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            }, 
+            new List<string>()
+        }
+    });
+});
+
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+builder.Services.AddAuthorization(options =>
+{
+
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+    .RequireAuthenticatedUser()
+    .Build();
+
+});
 
 var app = builder.Build();
 
@@ -34,8 +74,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/", () => "Hello World!")
-    .WithOpenApi(); ;
+app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/weatherforecast", (int id) =>
 {
@@ -48,9 +87,7 @@ app.MapGet("/weatherforecast", (int id) =>
         ))
         .ToArray();
     return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+}).WithName("GetWeatherForecast");
 
 app.Run();
 
