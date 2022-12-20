@@ -8,10 +8,13 @@ using FluentValidation.AspNetCore;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using FluentValidation;
+using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //ConfigureServices 
+builder.Services.AddFastEndpoints();
+
 builder.Services.AddApplicationServices()
     .AddPersistenceEfServices(builder.Configuration);
 
@@ -68,6 +71,8 @@ app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseFastEndpoints();
 
 var summaries = new[]
 {

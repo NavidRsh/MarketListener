@@ -7,6 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FastEndpoints" Version="5.5.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
@@ -15,6 +16,11 @@
 	  <ProjectReference Include="..\MarketListener.Application\MarketListener.Application.csproj" />
 	  <ProjectReference Include="..\MarketListener.Domain\MarketListener.Domain.csproj" />
 	  <ProjectReference Include="..\MarketListener.Persistence.Ef\MarketListener.Persistence.Ef.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Contracts\Responses\" />
+	  <Folder Include="Contracts\Requests\" />
 	</ItemGroup>
 	
 </Project>
