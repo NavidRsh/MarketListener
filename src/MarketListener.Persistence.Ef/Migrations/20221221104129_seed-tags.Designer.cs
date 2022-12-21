@@ -4,6 +4,7 @@ using MarketListener.Persistence.Ef.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketListener.Persistence.Ef.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221221104129_seed-tags")]
+    partial class seedtags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,14 +33,8 @@ namespace MarketListener.Persistence.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2(1)");
-
                     b.Property<bool>("IsRightAnswer")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2(1)");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
@@ -64,15 +61,9 @@ namespace MarketListener.Persistence.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2(1)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2(1)");
 
                     b.Property<int>("WordId")
                         .HasColumnType("int");
@@ -92,14 +83,8 @@ namespace MarketListener.Persistence.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("MeaningId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -120,14 +105,8 @@ namespace MarketListener.Persistence.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2(1)");
-
                     b.Property<bool>("IsTimeLimited")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2(1)");
 
                     b.Property<int>("QuestionType")
                         .HasColumnType("int");
@@ -161,12 +140,6 @@ namespace MarketListener.Persistence.Ef.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2(1)");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2(1)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -189,7 +162,6 @@ namespace MarketListener.Persistence.Ef.Migrations
                         {
                             Id = 1,
                             Category = "",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "General",
                             PersianName = "عمومی"
                         });
@@ -202,12 +174,6 @@ namespace MarketListener.Persistence.Ef.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2(1)");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2(1)");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -247,26 +213,6 @@ namespace MarketListener.Persistence.Ef.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "7040fa1d-be02-427f-8041-869791262152",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "ca046c71-fca8-439d-9583-80d919c6d738",
-                            Name = "Supporter",
-                            NormalizedName = "SUPPORTER"
-                        },
-                        new
-                        {
-                            Id = "248f2486-49af-4a78-8008-b4b44533e940",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

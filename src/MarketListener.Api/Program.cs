@@ -45,6 +45,14 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy => policy
+    .AllowAnyHeader()
+    .AllowAnyOrigin()
+    .AllowAnyMethod()); 
+});
+
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 
@@ -73,6 +81,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseFastEndpoints();
+
+app.UseCors("AllowAll");
 
 var summaries = new[]
 {

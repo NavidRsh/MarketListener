@@ -12,7 +12,7 @@ public class Tag : Entity<int>
     public string Name { get; set; }
     public string PersianName { get; set; }
     public string Category { get; set; }
-    public int ParentId { get; set; }
-    public Tag Parent { get; set; }
+    public int? ParentId { get; set; }
+    public Tag? Parent { get; set; }
 
 }

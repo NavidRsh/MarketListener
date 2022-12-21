@@ -14,6 +14,13 @@ public sealed class TagConfiguration : EntityConfiguration<Tag>
         builder.HasOne(e => e.Parent).WithMany()
             .HasForeignKey(e => e.ParentId)
             .OnDelete(DeleteBehavior.Restrict);
-        
+
+        builder.HasData(new Tag() { 
+            Id = 1, 
+            Name = "General",
+            ParentId = null,
+            PersianName = "عمومی",
+            Category = ""
+        }); 
     }
 }
