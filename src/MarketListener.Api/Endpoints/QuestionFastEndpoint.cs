@@ -4,12 +4,12 @@ using FastEndpoints;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class QuestionEndpoint : EndpointWithoutRequest
+public class QuestionFastEndpoint : EndpointWithoutRequest
 {
     public override void Configure()
     {
         Verbs(Http.GET);
-        Routes("question");
+        Routes("questionfast");
         AllowAnonymous();
     }
 

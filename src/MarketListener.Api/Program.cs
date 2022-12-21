@@ -9,11 +9,15 @@ using System.Runtime.CompilerServices;
 using System.Reflection;
 using FluentValidation;
 using FastEndpoints;
+using MarketListener.Api.Endpoints;
+using MarketListener.Api.StartupConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //ConfigureServices 
 builder.Services.AddFastEndpoints();
+
+builder.Services.RegisterMapsterConfiguration();
 
 builder.Services.AddApplicationServices()
     .AddPersistenceEfServices(builder.Configuration);
@@ -91,7 +95,7 @@ var summaries = new[]
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/weatherforecast", (int id) =>
+app.MapGet("/api/weatherforecast", (int id) =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
@@ -103,6 +107,10 @@ app.MapGet("/weatherforecast", (int id) =>
         .ToArray();
     return forecast;
 }).WithName("GetWeatherForecast");
+
+app.MapAnswerEndpoints();
+
+app.MapQuestionEndpoints();
 
 app.Run();
 

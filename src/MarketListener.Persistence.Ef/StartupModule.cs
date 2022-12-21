@@ -1,6 +1,10 @@
 ﻿namespace MarketListener.Persistence.Ef;
 
+using MarketListener.Application.Gateways.Repositories;
+using MarketListener.Application.Gateways.Repositories.Question;
 using MarketListener.Persistence.Ef.Data;
+using MarketListener.Persistence.Ef.Data.Repositories;
+using MarketListener.Persistence.Ef.Data.Repositories.Question;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +25,9 @@ public static class StartupModule
                 b.MigrationsAssembly(typeof(StartupModule).Assembly.GetName().Name);
             });
         });
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IQuestionRepository, QuestionRepository>();
 
         return services;
     }
