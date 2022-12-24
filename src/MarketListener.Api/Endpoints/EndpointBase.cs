@@ -41,6 +41,7 @@ public static class EndpointBase
             Status.NotImplemented => (int)ApiStatus.NotImplemented,
             Status.Forbidden => (int)ApiStatus.Forbidden,
             Status.ExternalServerError => (int)ApiStatus.InternalServerError,
+            Status.Unauthorized => (int)ApiStatus.Unauthorized,
             _ => throw new ArgumentOutOfRangeException()
         };
     }

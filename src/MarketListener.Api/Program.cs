@@ -8,18 +8,17 @@ using FluentValidation.AspNetCore;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using FluentValidation;
-using FastEndpoints;
 using MarketListener.Api.Endpoints;
 using MarketListener.Api.StartupConfig;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //ConfigureServices 
-builder.Services.AddFastEndpoints();
-
 builder.Services.RegisterMapsterConfiguration();
 
-builder.Services.AddApplicationServices()
+builder.Services.AddApplicationServices(builder.Configuration)
     .AddPersistenceEfServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -59,8 +58,20 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;    
+}).AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters {
+        ValidateIssuer = true,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+    }; 
+});
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 builder.Services.AddAuthorization(options =>
 {
 
@@ -83,8 +94,6 @@ app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseFastEndpoints();
 
 app.UseCors("AllowAll");
 
@@ -111,6 +120,8 @@ app.MapGet("/api/weatherforecast", (int id) =>
 app.MapAnswerEndpoints();
 
 app.MapQuestionEndpoints();
+
+app.MapAuthenticationEndpoints(); 
 
 app.Run();
 

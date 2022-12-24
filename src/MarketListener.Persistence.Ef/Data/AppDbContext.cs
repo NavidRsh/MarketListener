@@ -3,8 +3,9 @@
 using MarketListener.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using IdentityEntities;
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : IdentityDbContext<IdentityUserExtend, IdentityRoleExtend, int>
 {
 	public AppDbContext()
 	{

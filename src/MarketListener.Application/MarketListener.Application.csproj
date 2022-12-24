@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<Folder Include="Common\Converters\" />
 		<Folder Include="Features\Answer\" />
+		<Folder Include="Features\Authentication\Queries\" />
 	</ItemGroup>
 
 	<ItemGroup>

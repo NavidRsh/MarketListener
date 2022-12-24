@@ -4,10 +4,10 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>bebbda48-62ae-4c4b-b684-57914939defa</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FastEndpoints" Version="5.5.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
