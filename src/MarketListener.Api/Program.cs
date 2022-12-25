@@ -12,6 +12,8 @@ using MarketListener.Api.Endpoints;
 using MarketListener.Api.StartupConfig;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -95,37 +97,42 @@ app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseHttpsRedirection();
+
 app.UseCors("AllowAll");
 
-var summaries = new[]
+app.UseExceptionHandler(exceptionHandlerApp =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    exceptionHandlerApp.Run(async context =>
+    {
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+        // using static System.Net.Mime.MediaTypeNames;
+        context.Response.ContentType = Text.Plain;
+
+        await context.Response.WriteAsync("An exception was thrown.");
+
+        var exceptionHandlerPathFeature =
+            context.Features.Get<IExceptionHandlerPathFeature>();
+
+        if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
+        {
+            await context.Response.WriteAsync(" The file was not found.");
+        }
+
+        if (exceptionHandlerPathFeature?.Path == "/")
+        {
+            await context.Response.WriteAsync(" Page: Home.");
+        }
+    });
+});
 
 app.MapGet("/", () => "Hello World!");
-
-app.MapGet("/api/weatherforecast", (int id) =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateTime.Now.AddDays(index),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-}).WithName("GetWeatherForecast");
 
 app.MapAnswerEndpoints();
 
 app.MapQuestionEndpoints();
 
-app.MapAuthenticationEndpoints(); 
+app.MapAuthenticationEndpoints();
 
 app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

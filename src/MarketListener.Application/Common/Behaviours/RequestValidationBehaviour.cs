@@ -35,7 +35,7 @@ internal class RequestValidationBehaviour<TRequest, TResponse> : IPipelineBehavi
         }
 
         var validationErrors = validationResult.Errors.Select(a => a.ErrorMessage).Aggregate((a, b) => a + "," + b);
-        var response = (TResponse)Activator.CreateInstance(typeof(TResponse), Status.BadRequest, validationErrors, null);
+        var response = (TResponse)Activator.CreateInstance(typeof(TResponse), Status.BadRequest, validationErrors);
         
         return response; 
     }

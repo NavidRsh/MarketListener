@@ -2,6 +2,8 @@
 using MarketListener.Application.Features.Question.Queries;
 using MarketListener.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OpenApi;
@@ -34,15 +36,18 @@ public static class QuestionEndpoints
         .WithName("UpdateQuestion")
         .WithOpenApi();
 
-        group.MapPost("/", async (IMediator mediator, AddQuestionCommand model) =>
+        group.MapPost("/", async (IMediator mediator, HttpContext context, AddQuestionCommand model) =>
         {
+            model.CurrentUserId = EndpointBase.GetUserId(context.User);
+
+            var userName = EndpointBase.GetUserName(context.User);
+
             return EndpointBase.CreateResult<AddQuestionDto>(await mediator.Send(model));
         })
         .WithName("CreateQuestion")
-        .WithOpenApi()
-        .AllowAnonymous();
+        .WithOpenApi();
 
-        group.MapDelete("/{id}", (int id) =>
+        group.MapDelete("/{id}", [Authorize(Roles = "Administrator")](int id) =>
         {
             //return TypedResults.Ok(new Question { ID = id });
         })

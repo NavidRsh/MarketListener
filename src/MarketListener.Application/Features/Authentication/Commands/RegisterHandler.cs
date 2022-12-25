@@ -28,7 +28,7 @@ public sealed class RegisterHandler : IRequestHandler<RegisterCommand, RegisterD
 
     public async Task<RegisterDto> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
-        var RegisterResponse = await _authManager.Register(new Gateways.AuthManager.Models.RegisterRequest()
+        var registerErrors = await _authManager.Register(new Gateways.AuthManager.Models.RegisterRequest()
         {
             Password = command.Password,
             UserName = command.UserName,
@@ -37,11 +37,20 @@ public sealed class RegisterHandler : IRequestHandler<RegisterCommand, RegisterD
             LastName = command.LastName
         });
 
-        
+        if (registerErrors != null && registerErrors.Any())
+        {
+            return new RegisterDto(Status.BadRequest) { 
+                Errors = registerErrors.Select(a => new Error() {
+                    Reason = a.Description                    
+                }).ToList()
+            };
+        }
 
         return new RegisterDto(Status.Ok, "")
         {
-            
+            FirstName = command.FirstName,
+            LastName = command.LastName,
+            UserName = command.UserName
         };
     }
 

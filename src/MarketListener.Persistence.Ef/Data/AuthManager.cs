@@ -2,6 +2,7 @@
 
 using MarketListener.Application.Gateways.AuthManager;
 using MarketListener.Application.Gateways.AuthManager.Models;
+using MarketListener.Domain.Common;
 using MarketListener.Domain.Entities;
 using MarketListener.Persistence.Ef.IdentityEntities;
 using Microsoft.AspNetCore.Identity;
@@ -84,7 +85,10 @@ public class AuthManager : IAuthManager
             new Claim(JwtRegisteredClaimNames.Sub, _identityUser.UserName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Email, _identityUser.Email),
-            new Claim("userId", _identityUser.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.UniqueName, _identityUser.UserName),
+            new Claim(JwtRegisteredClaimNames.FamilyName, _identityUser.LastName),
+            new Claim(JwtRegisteredClaimNames.Name, _identityUser.FirstName),
+            new Claim(JwtRegisteredClaimNames.NameId, _identityUser.Id.ToString())
         }.Union(userClaims).Union(roleClaims);
 
         var token = new JwtSecurityToken(

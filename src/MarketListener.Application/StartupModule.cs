@@ -1,5 +1,8 @@
 ﻿namespace MarketListener.Application;
 
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using MarketListener.Application.Common.Behaviours;
 using MarketListener.Application.Common.Mappings;
 using MarketListener.Application.Gateways.AuthManager;
 using MediatR;
@@ -21,11 +24,18 @@ public static class StartupModule
     {
         services.AddMediatR(Assembly.GetExecutingAssembly());
 
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehaviour<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
+
         services.RegisterMapsterConfiguration(); 
 
         services.Configure<SieveOptions>(configuration);
 
         services.AddScoped<SieveProcessor>();
+
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
         return services;
     }

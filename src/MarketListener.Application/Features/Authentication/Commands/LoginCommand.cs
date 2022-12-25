@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Enums.Error;
 using MarketListener.Domain.Common;
 using MarketListener.Domain.Enums;
+using MarketListener.Domain.Interfaces;
 using MediatR;
 
 public sealed class LoginCommand : IRequest<LoginDto>
@@ -14,7 +15,7 @@ public sealed class LoginCommand : IRequest<LoginDto>
     public ApplicationCode? ApplicationCode { get; set; }
 }
 
-public sealed class LoginDto : ApplicationDto
+public sealed class LoginDto : ApplicationDto, IHasError
 {    
     public int UserId { get; init; }
 
@@ -26,6 +27,7 @@ public sealed class LoginDto : ApplicationDto
 
     public string AccessToken { get; init; } = null!;
 
+    public List<Error> Errors { get; set; }
     public LoginDto(Status status, string message = null) : base(status, message)
     {
     }
