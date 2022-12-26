@@ -88,6 +88,8 @@ var app = builder.Build();
 
 //Configure
 
+app.UseHttpsRedirection();
+
 //if (app.Environment.IsDevelopment())
 //{
 app.UseSwagger();
@@ -96,8 +98,6 @@ app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 
