@@ -18,10 +18,10 @@ using System.Threading.Tasks;
 
 public class AuthManager : IAuthManager
 {
-    private readonly UserManager<IdentityUserExtend> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly IConfiguration _configuration;
-    private IdentityUserExtend _identityUser;
-    public AuthManager(UserManager<IdentityUserExtend> userManager, IConfiguration configuration)
+    private ApplicationUser _identityUser;
+    public AuthManager(UserManager<ApplicationUser> userManager, IConfiguration configuration)
     {
         _userManager = userManager;
         _configuration = configuration;
@@ -55,7 +55,7 @@ public class AuthManager : IAuthManager
 
     public async Task<IEnumerable<IdentityError>?> Register(RegisterRequest registerRequest)
     {
-        _identityUser = new IdentityUserExtend() { 
+        _identityUser = new ApplicationUser() { 
             UserName = registerRequest.UserName,
             Email = registerRequest.Email,
             FirstName = registerRequest.FirstName,

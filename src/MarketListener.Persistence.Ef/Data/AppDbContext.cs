@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using IdentityEntities;
 
-public class AppDbContext : IdentityDbContext<IdentityUserExtend, IdentityRoleExtend, int>
+public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicaitonRole, int>
 {
 	public AppDbContext()
 	{

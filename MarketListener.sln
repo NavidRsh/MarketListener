@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketListener.Domain", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketListener.Application", "src\MarketListener.Application\MarketListener.Application.csproj", "{22DE03C4-2DA6-468A-8720-27B618F8056A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketListener.Persistence.Ef", "src\MarketListener.Persistence.Ef\MarketListener.Persistence.Ef.csproj", "{4103C14A-921D-4483-B14B-DAF527F3B2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketListener.Persistence.Ef", "src\MarketListener.Persistence.Ef\MarketListener.Persistence.Ef.csproj", "{4103C14A-921D-4483-B14B-DAF527F3B2C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketListener.Api", "src\MarketListener.Api\MarketListener.Api.csproj", "{E4CBA3ED-16B1-4088-A2F7-20DB8CF0AE8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketListener.Api", "src\MarketListener.Api\MarketListener.Api.csproj", "{E4CBA3ED-16B1-4088-A2F7-20DB8CF0AE8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

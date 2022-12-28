@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class IdentityUserExtendConfiguration : IEntityTypeConfiguration<IdentityUserExtend>
+public class ApplicaitonUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
-    public void Configure(EntityTypeBuilder<IdentityUserExtend> builder)
+    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
         builder.ToTable("Users");
 

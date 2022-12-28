@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class IdentityRoleExtend : IdentityRole<int>
+public class ApplicaitonRole : IdentityRole<int>
 {
 
 }

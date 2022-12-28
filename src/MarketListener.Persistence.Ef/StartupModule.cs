@@ -38,9 +38,11 @@ public static class StartupModule
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<IUserRepository, UserRepository>();        
 
-        services.AddIdentityCore<IdentityUserExtend>()
-            .AddRoles<IdentityRoleExtend>()
-            .AddEntityFrameworkStores<AppDbContext>(); 
+        services.AddIdentityCore<ApplicationUser>()
+            .AddRoles<ApplicaitonRole>()
+            .AddEntityFrameworkStores<AppDbContext>();
+
+        services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
 
         return services;
     }

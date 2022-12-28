@@ -30,8 +30,7 @@ public class UnitOfWork : IUnitOfWork
 
     public IUserRepository UserRepository => new UserRepository(_appDbContext, _mapper);
 
-    public UnitOfWork(AppDbContext appDbContext, SieveProcessor processor, IMapper mapper,
-        UserManager<IdentityUserExtend> userManager)
+    public UnitOfWork(AppDbContext appDbContext, SieveProcessor processor, IMapper mapper)
     {
         _appDbContext = appDbContext;
         _processor = processor;

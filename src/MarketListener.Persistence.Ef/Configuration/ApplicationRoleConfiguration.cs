@@ -10,23 +10,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class IdentityRoleExtendConfiguration : IEntityTypeConfiguration<IdentityRoleExtend>
+public class ApplicationRoleConfiguration : IEntityTypeConfiguration<ApplicaitonRole>
 {
-    public void Configure(EntityTypeBuilder<IdentityRoleExtend> builder)
+    public void Configure(EntityTypeBuilder<ApplicaitonRole> builder)
     {
         builder.ToTable("Roles");
 
-        builder.HasData(new IdentityRoleExtend
+        builder.HasData(new ApplicaitonRole
         {
             Id = 1,
             Name = "Administrator",
             NormalizedName = "ADMINISTRATOR"
-        }, new IdentityRoleExtend
+        }, new ApplicaitonRole
         {
             Id = 2,
             Name = "Supporter",
             NormalizedName = "SUPPORTER"
-        }, new IdentityRoleExtend
+        }, new ApplicaitonRole
         {
             Id = 3,
             Name = "User",
