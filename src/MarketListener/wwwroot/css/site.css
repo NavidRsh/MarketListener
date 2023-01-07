@@ -21,3 +21,12 @@ body {
     margin-bottom: 60px;
     background: url("../images/pexels-nothing-ahead.png");
 }
+
+#main-container {
+    background-color : white;
+}
+
+#main-footer {
+    background-color : #383838;
+    color: #AAAAAA;
+}

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/WiredBrainCoffeeAdmin.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="main-container">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
@@ -45,38 +45,20 @@
         <main>
             @RenderBody()
         </main>
-        <footer>
+        <footer id="main-footer">
             <div class="row">
                 <div class="col-md-4">
-                    <p>&copy; 2022 - WiredBrainCoffeeAdmin</p>
-                    <img id="logo" src="~/images/wired-brain-coffee-logo.png" />
+                    <p>&copy; 2022 - English Contest</p>
+                    @*<img id="logo" src="~/images/wired-brain-coffee-logo.png" />*@
                 </div>
                 <div class="col-md-4">
-                    <p>1234 Wired Brain Way</p>
-                    <p>Awesome City, CA 55555</p>
-                    <p>Phone: 555-123-4567</p>
-                    <p>Fax: 555-123-4567</p>
+                    <p>Multiple Choice Questions</p>
+                    <p>Sentence Completion</p>
+                    <p>Matching Headings</p>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-pic">
-                        @{
-                            var urlPath = Context.Request.Path;
-                        }
-                        @switch (urlPath)
-                        {
-                            case "/":
-                                <img src="~/images/menu/cake.jpg" />
-                                break;
-                            case "/help":
-                                <img src="~/images/menu/cappucino.png" />
-                                break;
-                            case "/menu":
-                                <img src="~/images/menu/waffles.jpg" />
-                                break;
-                            case "/menu/add":
-                                <img src="~/images/menu/salad1.jpg" />
-                                break;
-                        }
+                                                
                     </div>
                 </div>
             </div>
