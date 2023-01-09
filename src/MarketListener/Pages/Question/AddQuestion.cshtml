@@ -1,0 +1,23 @@
+﻿@page "/Questions/Add"
+@model MarketListener.Pages.Questions.AddQuestionModel
+
+@{
+    <h1>Add New Question</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="AddQuestionVM.Title">Title</label>
+                    <input asp-for="AddQuestionVM.Title" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="AddQuestionVM.Text">Text</label>
+                    <input asp-for="AddQuestionVM.Text" class="form-control" />
+                </div>
+                <button class="btn btn-success" type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+}

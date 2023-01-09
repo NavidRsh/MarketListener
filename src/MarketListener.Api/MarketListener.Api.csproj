@@ -24,10 +24,5 @@
 	  <ProjectReference Include="..\MarketListener.Domain\MarketListener.Domain.csproj" />
 	  <ProjectReference Include="..\MarketListener.Persistence.Ef\MarketListener.Persistence.Ef.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Contracts\Responses\" />
-	  <Folder Include="Contracts\Requests\" />
-	</ItemGroup>
 	
 </Project>

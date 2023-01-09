@@ -9,7 +9,9 @@ namespace MarketListener.Pages.Questions
     public class AddQuestionModel : PageModel
     {
         private readonly IMediator _mediator;
-        AddQuestionVM addQuestionVM; 
+
+        [BindProperty]
+        public AddQuestionVM AddQuestionVM { get; set; }
 
         public AddQuestionModel(IMediator mediator)
         {
@@ -25,11 +27,11 @@ namespace MarketListener.Pages.Questions
             {
                 await _mediator.Send(new AddQuestionCommand()
                 {
-                    Title = addQuestionVM.Title,
-                    Text = addQuestionVM.Text,
-                    QuestionType = addQuestionVM.QuestionType,
-                    IsTimeLimited = addQuestionVM.IsTimeLimited,
-                    TimeLimitSeconds = addQuestionVM.TimeLimitSeconds                    
+                    Title = AddQuestionVM.Title,
+                    Text = AddQuestionVM.Text,
+                    QuestionType = AddQuestionVM.QuestionType,
+                    IsTimeLimited = AddQuestionVM.IsTimeLimited,
+                    TimeLimitSeconds = AddQuestionVM.TimeLimitSeconds                    
                 });
 
                 return RedirectToPage("Questions"); 

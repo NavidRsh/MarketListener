@@ -1,3 +1,4 @@
+using MarketListener.Api.Endpoints;
 using MarketListener.Application;
 using MarketListener.Persistence.Ef;
 using MarketListener.Persistence.Ef.Data;
@@ -39,5 +40,13 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+//app.MapGet("/", () => "Hello World!");
+
+app.MapAnswerEndpoints();
+
+app.MapQuestionEndpoints();
+
+app.MapAuthenticationEndpoints();
 
 app.Run();
