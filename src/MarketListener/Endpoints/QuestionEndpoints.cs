@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OpenApi;
-namespace MarketListener.Api.Endpoints;
+namespace MarketListener.Endpoints;
 
 public static class QuestionEndpoints
 {
@@ -36,7 +36,7 @@ public static class QuestionEndpoints
         .WithName("UpdateQuestion")
         .WithOpenApi();
 
-        group.MapPost("/", async (IMediator mediator, HttpContext context, AddQuestionCommand model) =>
+        group.MapPost("/Add", async (IMediator mediator, HttpContext context, AddQuestionCommand model) =>
         {
             model.CurrentUserId = EndpointBase.GetUserId(context.User);
 

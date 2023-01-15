@@ -7,17 +7,11 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form method="post">
-                <div class="mb-3">
-                    <label asp-for="AddQuestionVM.Title">Title</label>
-                    <input asp-for="AddQuestionVM.Title" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label asp-for="AddQuestionVM.Text">Text</label>
-                    <input asp-for="AddQuestionVM.Text" class="form-control" />
-                </div>
-                <button class="btn btn-success" type="submit">Create</button>
-            </form>
+            <partial name="QuestionForm" model=@Model.AddQuestionCommand></partial>
+        </div>
+        <div class="col-md-6">
+            <partial name="HelpWidget"></partial>
         </div>
     </div>
+    
 }

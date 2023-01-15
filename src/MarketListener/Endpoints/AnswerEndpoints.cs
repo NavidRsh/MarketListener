@@ -3,7 +3,7 @@ using MarketListener.Domain.Entities;
 using MarketListener.Persistence.Ef.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.OpenApi;
-namespace MarketListener.Api.Endpoints;
+namespace MarketListener.Endpoints;
 
 public static class AnswerEndpoints
 {

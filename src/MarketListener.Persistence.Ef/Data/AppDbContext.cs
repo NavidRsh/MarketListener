@@ -19,10 +19,12 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicaitonRole, 
 
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
-    public DbSet<Word> Words { get; set; }
+    public DbSet<Word> Words { get; set; }    
+    public DbSet<Language> Languages { get; set; }
     public DbSet<Meaning> Meanings { get; set; }
     public DbSet<MeaningExample> MeaningExamples { get; set; }
     public DbSet<Tag> Tags { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

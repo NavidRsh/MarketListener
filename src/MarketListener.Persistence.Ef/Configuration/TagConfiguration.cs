@@ -15,12 +15,6 @@ public sealed class TagConfiguration : EntityConfiguration<Tag>
             .HasForeignKey(e => e.ParentId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasData(new Tag() { 
-            Id = 1, 
-            Name = "General",
-            ParentId = null,
-            PersianName = "عمومی",
-            Category = ""
-        }); 
+        builder.HasData(Tag.Create(1, "General", "عمومی", "", null));
     }
 }

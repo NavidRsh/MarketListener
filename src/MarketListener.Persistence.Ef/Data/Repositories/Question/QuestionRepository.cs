@@ -18,17 +18,19 @@ public sealed class QuestionRepository : EfRepository<Question, int>, IQuestionR
 
     public async Task<List<ListQuestionQueryDtoItem>> GetQuestionList(SieveModel sieveModel)
     {
-        return await _processor.Apply(sieveModel, GetFundQueryable()).ToListAsync();
+        return sieveModel != null ? await _processor.Apply(sieveModel, GetQuestionsQueryable()).ToListAsync()
+            : await GetQuestionsQueryable().ToListAsync();
     }
 
     public async Task<long> GetQuestionCount(SieveModel sieveModel)
     {
-        return await _processor.Apply(sieveModel, GetFundQueryable(), applyPagination: false).CountAsync();
+        return await _processor.Apply(sieveModel, GetQuestionsQueryable(), applyPagination: false).CountAsync();
     }
 
-    private IQueryable<ListQuestionQueryDtoItem> GetFundQueryable()
+    private IQueryable<ListQuestionQueryDtoItem> GetQuestionsQueryable()
     {
         return _dbContext.Questions
+            .AsNoTracking()
             .Select(a => new ListQuestionQueryDtoItem
             {
                 Id = a.Id,

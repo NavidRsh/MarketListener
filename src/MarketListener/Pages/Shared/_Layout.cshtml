@@ -23,22 +23,29 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Products
+                                    Questions
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" asp-page="viewproducts">View All</a></li>
-                                    <li><a class="dropdown-item" asp-page="addproduct">Add New</a></li>
+                                    <li><a class="dropdown-item" asp-page="questions">View All</a></li>
+                                    <li><a class="dropdown-item" asp-page="addquestion">Add New</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Orders (Coming soon)</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Words
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" asp-page="word/words">View All</a></li>
+                                    <li><a class="dropdown-item" asp-page="word/addword">Add New</a></li>
+                                </ul>
                             </li>
+                            
                             <li class="nav-item">
                                 <a class="nav-link" asp-page="help">Help</a>
                             </li>
                         </ul>
                     </div>
-                    <a class="navbar-brand float-right" asp-page="index">Wired Brain Coffee</a>
+                    <a class="navbar-brand float-right" asp-page="index">Language Contest!</a>
                 </div>
             </nav>
         </header>

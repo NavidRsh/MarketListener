@@ -2,7 +2,7 @@
 
 using Azure;
 using FluentValidation;
-using MarketListener.Api.Endpoints;
+using MarketListener.Endpoints;
 using MarketListener.Application.Common.Models;
 using MarketListener.Domain.Common;
 using MarketListener.Domain.Enums.Error;

@@ -1,4 +1,4 @@
-using MarketListener.Api.Endpoints;
+using MarketListener.Endpoints;
 using MarketListener.Application;
 using MarketListener.Persistence.Ef;
 using MarketListener.Persistence.Ef.Data;

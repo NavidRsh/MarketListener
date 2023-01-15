@@ -1,0 +1,15 @@
+﻿@page
+@model MarketListener.Pages.Question.EditQuestionModel
+@{
+    <h1>Edit Question</h1>
+    <hr />
+
+    <div class="row">
+            <div class="col-md-6">
+                <partial name="QuestionForm" model=@Model.UpdateQuestionCommand></partial>
+            </div>
+            <div class="col-md-6">
+                <partial name="HelpWidget"></partial>
+            </div>
+    </div>
+}

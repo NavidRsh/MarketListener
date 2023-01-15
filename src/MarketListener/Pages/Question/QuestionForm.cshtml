@@ -1,0 +1,49 @@
+﻿@using MarketListener.Application.Features.Question.Commands;
+@model AddQuestionCommand; 
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="@Model.Title">Title</label>
+        <input asp-for="@Model.Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Text">Text</label>
+        <input asp-for="@Model.Text" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.QuestionType">Question Type</label>
+        <select asp-for="@Model.QuestionType" class="form-control">
+            <option value="1">SimpleFourOptions</option>
+            <option value="2">Other</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <input asp-for="@Model.IsTimeLimited" type="checkbox" name="IsTimeLimited" value="true" id="time-limited-checkbox" />
+        <label asp-for="@Model.IsTimeLimited">Is Time Limited?</label>
+    </div>
+    <div class="mb-3" id="seconds-division">
+        <label asp-for="@Model.TimeLimitSeconds">Seconds</label>
+        <input asp-for="@Model.TimeLimitSeconds" class="form-control" />
+    </div>
+    @if (ViewContext.RouteData.Values["id"] is not null)
+    {
+        <button asp-page-handler="edit" class="btn btn-success" type="submit">Edit</button>
+        <button asp-page-handler="delete" class="btn btn-warning" type="submit">Delete</button>
+    }
+    else
+    {
+        <button class="btn btn-success" type="submit">Create</button>
+    }
+</form>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#time-limited-checkbox').click(function () {
+                if (this.checked) $('#seconds-division').show();
+                else $('#seconds-division').hide();
+            });
+        });
+    </script>
+    }

@@ -1,4 +1,4 @@
-﻿namespace MarketListener.Api.Endpoints;
+﻿namespace MarketListener.Endpoints;
 
 using FluentValidation;
 using MarketListener.Application.Common.Models;

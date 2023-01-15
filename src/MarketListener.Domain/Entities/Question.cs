@@ -30,12 +30,12 @@ public class Question : Entity<int>
         return new Question(title, text, questionType, tags, isTimeLimited, timeLimitSeconds);
     }
 
-    public string Title { get; set; } = default!;
-    public string Text { get; set; } = default!;
-    public QuestionType QuestionType { get; set; }
-    public List<Tag> Tags { get; set; } = default!;
-    public bool IsTimeLimited { get; set; }
-    public int TimeLimitSeconds { get; set; }
+    public string Title { get; private set; } = default!;
+    public string Text { get; private set; } = default!;
+    public QuestionType QuestionType { get; private set; }
+    public List<Tag> Tags { get; private set; } = default!;
+    public bool IsTimeLimited { get; private set; }
+    public int TimeLimitSeconds { get; private set; }
 
     public void Update(string title, string text, QuestionType questionType, List<Tag> tags, bool isTimeLimited, int timeLimitSeconds)
     {
