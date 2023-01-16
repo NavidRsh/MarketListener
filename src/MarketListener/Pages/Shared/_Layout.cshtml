@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WiredBrainCoffeeAdmin.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/datatable/datatables.css" asp-append-version="true" />
 </head>
 <body>
     <div class="container" id="main-container">
@@ -72,8 +73,10 @@
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/datatable/datatables.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

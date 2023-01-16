@@ -5,3 +5,15 @@
 <div class="table-responsive">
     @await Component.InvokeAsync("QuestionList")
 </div>
+@section Scripts{
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                $('#questions-datatable').DataTable({
+                    "pagingType": "simple"
+                });
+                $('.dataTables_length').addClass('bs-select');
+            });
+        });
+    </script>
+    }
