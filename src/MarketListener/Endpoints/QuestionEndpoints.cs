@@ -1,4 +1,5 @@
-﻿using MarketListener.Application.Features.Question.Commands;
+﻿using Azure.Core;
+using MarketListener.Application.Features.Question.Commands;
 using MarketListener.Application.Features.Question.Queries;
 using MarketListener.Domain.Entities;
 using MediatR;
@@ -15,9 +16,10 @@ public static class QuestionEndpoints
     {
         var group = routes.MapGroup("/api/Question").WithTags(nameof(Question));
 
-        group.MapGet("/", async (IMediator mediator) =>
+        group.MapPost("/", async (IMediator mediator) =>
         {
             return EndpointBase.CreateResult<ListQuestionQueryDto>(await mediator.Send(new ListQuestionQuery()));
+            //return await mediator.Send(new ListQuestionQuery());
         })
         .WithName("GetAllQuestions")
         .WithOpenApi();

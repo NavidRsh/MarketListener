@@ -1,5 +1,5 @@
 ﻿@using MarketListener.Application.Features.Question.Queries;
-@model ListQuestionQueryDto;
+@*@model ListQuestionQueryDto;*@
 
 <table class="table table-striped table-bordered table-sm" id="questions-datatable">
     <thead>
@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.List)
+        @*@foreach (var item in Model.List)
         {
             <tr>
                 <td>@item.Id</td>
@@ -23,7 +23,7 @@
                 <td>@item.IsTimeLimited</td>
                 <td><a class="btn btn-success" asp-page="EditQuestion" asp-route-id="@item.Id">Edit</a></td>
             </tr>
-        }
+        }*@
     </tbody>
 </table>
 

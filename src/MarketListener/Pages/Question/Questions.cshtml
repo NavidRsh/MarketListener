@@ -6,14 +6,7 @@
     @await Component.InvokeAsync("QuestionList")
 </div>
 @section Scripts{
-    <script>
-        $(function () {
-            $(document).ready(function () {
-                $('#questions-datatable').DataTable({
-                    "pagingType": "simple"
-                });
-                $('.dataTables_length').addClass('bs-select');
-            });
-        });
-    </script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/questiondatatable.js"></script>
     }
