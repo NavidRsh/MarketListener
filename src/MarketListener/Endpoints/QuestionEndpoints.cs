@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OpenApi;
+using Microsoft.EntityFrameworkCore.Design.Internal;
+
 namespace MarketListener.Endpoints;
 
 public static class QuestionEndpoints
@@ -16,10 +18,28 @@ public static class QuestionEndpoints
     {
         var group = routes.MapGroup("/api/Question").WithTags(nameof(Question));
 
-        group.MapPost("/", async (IMediator mediator) =>
+        group.MapPost("/", async (IMediator mediator, HttpContext context) =>
         {
-            return EndpointBase.CreateResult<ListQuestionQueryDto>(await mediator.Send(new ListQuestionQuery()));
-            //return await mediator.Send(new ListQuestionQuery());
+            
+            var draw = context.Request.Form["draw"].FirstOrDefault();
+            var start = context.Request.Form["start"].FirstOrDefault();
+            var length = context.Request.Form["length"].FirstOrDefault();
+            var sortColumn = context.Request.Form["columns[" + context.Request.Form["order[0][column]"].FirstOrDefault()
+                + "][name]"].FirstOrDefault();
+            var sortColumnDirection = context.Request.Form["order[0][dir]"].FirstOrDefault();
+            var searchValue = context.Request.Form["search[value]"].FirstOrDefault();
+
+            int recordsTotal = 0;
+
+            ListQuestionQuery query = new ListQuestionQuery() { 
+                SieveModel = new Sieve.Models.SieveModel() { 
+                    PageSize = length != null ? Convert.ToInt32(length) : 10,
+                    Page = (start != null && start != "0") ? (Convert.ToInt32(start) / Convert.ToInt32(length)) + 1 : 1
+                },
+                Draw = Convert.ToInt32(draw)
+            }; 
+
+            return EndpointBase.CreateResult<ListQuestionQueryDto>(await mediator.Send(query));
         })
         .WithName("GetAllQuestions")
         .WithOpenApi();

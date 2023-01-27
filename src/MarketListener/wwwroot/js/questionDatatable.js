@@ -7,7 +7,13 @@
             "url": "/api/question",
             "type": "POST",
             "datatype": "json",
-            "dataSrc": "data.list"
+            //"dataSrc": "data.list"
+            "dataSrc": function(response) {
+                response.recordsTotal = response.data.count;
+                response.recordsFiltered = response.data.count; 
+                response.draw = response.data.draw;
+                return response.data.list;
+            }
         },
         "columnDefs": [
             //{
@@ -16,7 +22,7 @@
             //    "searchable": false
             //}
         ],
-        "data": { "id": -1, "filterName": "assetFilter" },
+        //"data": { "id": -1, "filterName": "assetFilter" },
         "columns": [
             { "data": "id", "name": "Id", "autoWidth": true },
             { "data": "title", "name": "Title", "autoWidth": true },

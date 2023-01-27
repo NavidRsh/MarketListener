@@ -21,10 +21,14 @@ public sealed class ListQuestionQueryHandler : IRequestHandler<ListQuestionQuery
     }
     public async Task<ListQuestionQueryDto> Handle(ListQuestionQuery request, CancellationToken cancellationToken)
     {
+        var list = await _QuestionRepository.GetQuestionList(request.SieveModel);
+        var count = await _QuestionRepository.GetQuestionCount(request.SieveModel); 
+
         return new ListQuestionQueryDto(Status.Ok)
         {
-            List = await _QuestionRepository.GetQuestionList(request.SieveModel),
-            Count = await _QuestionRepository.GetQuestionCount(request.SieveModel)
+            List = list,
+            Count = count,            
+            Draw = request.Draw
         };        
     }
 }

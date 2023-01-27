@@ -12,12 +12,15 @@ using System.Text.Json.Serialization;
 public sealed class ListQuestionQuery : IRequest<ListQuestionQueryDto>
 {
     public SieveModel? SieveModel { get; init; }
+
+    public int Draw { get; init; }
 }
 
 public sealed class ListQuestionQueryDto : ApplicationDto
 {
     public List<ListQuestionQueryDtoItem>? List { get; set; }
     public long Count { get; init; }
+    public int Draw { get; init; }
     public ListQuestionQueryDto(Status status, string message = "") : base(status, message)
     {
         
