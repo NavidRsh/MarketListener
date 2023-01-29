@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Question/Edit/{id:int}"
 @model MarketListener.Pages.Question.EditQuestionModel
 @{
     <h1>Edit Question</h1>
@@ -13,3 +13,14 @@
             </div>
     </div>
 }
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#time-limited-checkbox').click(function () {
+                if (this.checked) $('#seconds-division').show();
+                else $('#seconds-division').hide();
+            });
+        });
+    </script>
+    }

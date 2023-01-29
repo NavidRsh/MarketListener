@@ -1,9 +1,10 @@
-﻿@page "/Questions/ViewAll"
+﻿@page "/Question/ViewAll"
 @model MarketListener.Pages.Question.QuestionsModel
 <h1 class="h2">All Questions <a asp-page="AddQuestion" class="btn-success btn float-end">Add New</a></h1>
 <hr />
 <div class="table-responsive">
-    @await Component.InvokeAsync("QuestionList")
+    @*@await Component.InvokeAsync("QuestionList")*@
+    <vc:question-list />
 </div>
 @section Scripts{
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>

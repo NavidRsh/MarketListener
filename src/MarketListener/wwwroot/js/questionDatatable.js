@@ -30,10 +30,15 @@
             { "data": "questionType", "name": "QuestionType", "autoWidth": true },
             { "data": "isTimeLimited", "name": "IsTimeLimited", "autoWidth": true },
             {
-                "render": function (data, row) { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.id + "'); >Delete</a>"; }
+                //"render": function (data, row) { return "<a href='#' class='btn btn-success' onclick=editCustomer('" + row.id + "'); >Edit</a>"; }
+                "render": function (data, type, row, meta) { return "<a class='btn btn-success' href='/Question/Edit/" + row.id + "'>Edit</a>"; }
             }
         ],
         "pagingType": "simple"
     });
     $('.dataTables_length').addClass('bs-select');
 });
+
+function editCustomer() {
+    alert('hi'); 
+}
