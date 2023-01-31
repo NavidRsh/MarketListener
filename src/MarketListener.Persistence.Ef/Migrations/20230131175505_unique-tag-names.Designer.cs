@@ -4,6 +4,7 @@ using MarketListener.Persistence.Ef.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketListener.Persistence.Ef.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230131175505_unique-tag-names")]
+    partial class uniquetagnames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,11 +196,6 @@ namespace MarketListener.Persistence.Ef.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2(1)");
 
@@ -229,79 +227,9 @@ namespace MarketListener.Persistence.Ef.Migrations
                         {
                             Id = 1,
                             Category = "",
-                            Code = "GNR",
                             CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "General",
                             PersianName = "عمومی"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Category = "",
-                            Code = "IEL",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS",
-                            PersianName = "آزمون آیلتس"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Category = "",
-                            Code = "IEL-AC",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS Academic",
-                            ParentId = 2,
-                            PersianName = "آزمون آیلتس"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Category = "",
-                            Code = "IEL-GNR",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS General",
-                            ParentId = 2,
-                            PersianName = "آزمون آیلتس"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Category = "",
-                            Code = "IEL-AC-8",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS Academic Band Score 8",
-                            ParentId = 3,
-                            PersianName = "نمره ۸ آیلتس"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Category = "",
-                            Code = "IEL-AC-7",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS Academic Band Score 7",
-                            ParentId = 3,
-                            PersianName = "نمره ۷ آیلتس"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Category = "",
-                            Code = "IEL-AC-6",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS Academic Band Score 6",
-                            ParentId = 3,
-                            PersianName = "نمره ۶ آیلتس"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Category = "",
-                            Code = "IEL-AC-5",
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "IELTS Academic Band Score 5",
-                            ParentId = 3,
-                            PersianName = "نمره ۵ آیلتس"
                         });
                 });
 

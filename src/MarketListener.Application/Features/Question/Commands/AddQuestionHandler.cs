@@ -20,7 +20,7 @@ public sealed class AddQuestionHandler : IRequestHandler<AddQuestionCommand, Add
 
     public async Task<AddQuestionDto> Handle(AddQuestionCommand command, CancellationToken cancellationToken)
     {
-        var tags = new List<Tag>(); 
+        var tags = new List<string>(); 
 
         var Question = Domain.Entities.Question.Create(command.Title, command.Text, command.QuestionType, 
             tags, command.IsTimeLimited, command.TimeLimitSeconds);

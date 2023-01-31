@@ -12,30 +12,25 @@ public class Tag : Entity<int>
     private Tag(int id) : base(id)
     { }
     private Tag() : base() { }
-    public static Tag Create(int? id, string name, string persianName, string category, int? parentId)
+    public static Tag Create(int? id, string name, string persianName, string code, string category, int? parentId)
     {
-        if (id != null)
+        var tag = new Tag()
         {
-            return new Tag(id.Value)
-            {
-                Name = name,
-                PersianName = persianName,
-                Category = category,
-                ParentId = parentId
-            };
-        }
-
-        return new Tag()
-        {
+            Code = code,
             Name = name,
             PersianName = persianName,
             Category = category,
             ParentId = parentId
         };
 
+        if (id != null)
+            tag.Id = id.Value;
+
+        return tag;
     }
     public string Name { get; private set; }
     public string PersianName { get; private set; }
+    public string Code { get; private set; }
     public string Category { get; private set; }
     public int? ParentId { get; private set; }
     public Tag? Parent { get; private set; }

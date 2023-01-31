@@ -15,7 +15,7 @@ public class Question : Entity<int>
     {
 
     }
-    private Question(string title, string text, QuestionType questionType, List<Tag> tags, bool isTimeLimited, int timeLimitSeconds)
+    private Question(string title, string text, QuestionType questionType, List<string> tags, bool isTimeLimited, int timeLimitSeconds)
     {
         Title = title;
         Text = text;
@@ -25,7 +25,7 @@ public class Question : Entity<int>
         TimeLimitSeconds = timeLimitSeconds;
     }
 
-    public static Question Create(string title, string text, QuestionType questionType, List<Tag> tags, bool isTimeLimited, int timeLimitSeconds)
+    public static Question Create(string title, string text, QuestionType questionType, List<string> tags, bool isTimeLimited, int timeLimitSeconds)
     {
         return new Question(title, text, questionType, tags, isTimeLimited, timeLimitSeconds);
     }
@@ -33,7 +33,7 @@ public class Question : Entity<int>
     public string Title { get; private set; } = default!;
     public string Text { get; private set; } = default!;
     public QuestionType QuestionType { get; private set; }
-    public List<Tag> Tags { get; private set; } = default!;
+    public List<string> Tags { get; private set; } = default!;
     public bool IsTimeLimited { get; private set; }
     public int TimeLimitSeconds { get; private set; }
 
@@ -42,7 +42,7 @@ public class Question : Entity<int>
         this.Title = title;
         this.Text = text;
         this.QuestionType = questionType;
-        this.Tags = tags;
+        //this.Tags = tags;
         this.IsTimeLimited = isTimeLimited;
         this.TimeLimitSeconds = timeLimitSeconds;
     }

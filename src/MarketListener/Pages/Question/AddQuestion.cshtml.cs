@@ -1,4 +1,5 @@
 using MarketListener.Application.Features.Question.Commands;
+using MarketListener.ViewModels.Question;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,8 +11,8 @@ namespace MarketListener.Pages.Question
         private readonly IMediator _mediator;
 
         [BindProperty]
-        public AddQuestionCommand AddQuestionCommand { get; set; }
-
+        public EditQuestionViewModel EditQuestionViewModel { get; set; }
+        
         public AddQuestionModel(IMediator mediator)
         {
             _mediator = mediator;
@@ -24,7 +25,13 @@ namespace MarketListener.Pages.Question
         {
             if (ModelState.IsValid)
             {
-                await _mediator.Send(AddQuestionCommand);
+                await _mediator.Send(new AddQuestionCommand() { 
+                    Title= EditQuestionViewModel.Question.Title,
+                    Text=EditQuestionViewModel.Question.Text,
+                    TimeLimitSeconds=EditQuestionViewModel.Question.TimeLimitSeconds,
+                    IsTimeLimited=EditQuestionViewModel.Question.IsTimeLimited,
+                    QuestionType=EditQuestionViewModel.Question.QuestionType
+                });
 
                 return RedirectToPage("Questions");
             }

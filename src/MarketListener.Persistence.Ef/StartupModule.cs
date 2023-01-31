@@ -10,6 +10,7 @@ using MarketListener.Persistence.Ef.Data.Repositories;
 using MarketListener.Persistence.Ef.Data.Repositories.Question;
 using MarketListener.Persistence.Ef.Data.Repositories.User;
 using MarketListener.Persistence.Ef.IdentityEntities;
+using MarketListener.Persistence.Ef.StartupConfig;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,8 +36,8 @@ public static class StartupModule
         services.AddScoped<IAuthManager, AuthManager>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IQuestionRepository, QuestionRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();        
+
+        services.AddRepositories(); 
 
         services.AddIdentityCore<ApplicationUser>()
             .AddRoles<ApplicaitonRole>()

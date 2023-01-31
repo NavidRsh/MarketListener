@@ -31,7 +31,7 @@
             { "data": "isTimeLimited", "name": "IsTimeLimited", "autoWidth": true },
             {
                 //"render": function (data, row) { return "<a href='#' class='btn btn-success' onclick=editCustomer('" + row.id + "'); >Edit</a>"; }
-                "render": function (data, type, row, meta) { return "<a class='btn btn-success' href='/Question/Edit/" + row.id + "'>Edit</a>"; }
+                "render": function (data, type, row, meta) { return "<a class='btn btn-warning' href='/Question/Edit/" + row.id + "'>Edit</a>"; }
             }
         ],
         "pagingType": "simple"
