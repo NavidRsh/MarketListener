@@ -8,6 +8,7 @@ using Domain.Entities;
 using Gateways.Repositories;
 using MediatR;
 using Domain.Common;
+using MarketListener.Domain.ValueObjects;
 
 public sealed class UpdateQuestionHandler : IRequestHandler<UpdateQuestionCommand, UpdateQuestionDto>
 {
@@ -24,7 +25,8 @@ public sealed class UpdateQuestionHandler : IRequestHandler<UpdateQuestionComman
         if (Question is null)
             return new UpdateQuestionDto(Status.BadRequest, Resources.QuestionNotFound);
 
-        Question.Update(command.Title, command.Text, command.QuestionType, command.Tags, command.IsTimeLimited, command.TimeLimitSeconds);
+        Question.Update(command.Title, command.Text, command.QuestionType, command.Tags.Select(a => TagLabel.Create(a)).ToList(),
+            command.IsTimeLimited, command.TimeLimitSeconds);
 
         await _unitOfWork.SaveChangesAsync();
 

@@ -4,6 +4,10 @@
 <form method="post">
     <div asp-validation-summary="All"></div>
     <div class="mb-3">
+        <label asp-for="@Model.Question.Id">Id</label>
+        <input asp-for="@Model.Question.Id" class="form-control" />
+    </div>
+    <div class="mb-3">
         <label asp-for="@Model.Question.Title">Title</label>
         <input asp-for="@Model.Question.Title" class="form-control" />
     </div>
@@ -28,12 +32,9 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="@Model.Tags">Tags</label>
-        <select asp-for=@Model.Question.Tags asp-items="@Model.AllTags" id="tags" placeholder="select tags" class="form-control dropdown" multiple>
-            @*@foreach (var item in Model.Tags)
-            {
-                <option value=@item.Name>@item.Name</option>
-            }*@
+        <label>Tags</label>
+        <select asp-for="Question.Tags" asp-items="Model.AllTags" id="tags" placeholder="select tags" class="form-control dropdown" multiple>
+            @*<option>Please select one</option>*@
         </select>
     </div>
 

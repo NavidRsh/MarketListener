@@ -8,6 +8,7 @@ using Domain.Entities;
 using Gateways.Repositories;
 using MediatR;
 using Domain.Common;
+using MarketListener.Domain.ValueObjects;
 
 public sealed class AddQuestionHandler : IRequestHandler<AddQuestionCommand, AddQuestionDto>
 {
@@ -23,7 +24,8 @@ public sealed class AddQuestionHandler : IRequestHandler<AddQuestionCommand, Add
         var tags = new List<string>(); 
 
         var Question = Domain.Entities.Question.Create(command.Title, command.Text, command.QuestionType, 
-            tags, command.IsTimeLimited, command.TimeLimitSeconds);
+            tags.Select(a => TagLabel.Create(a)).ToList(), 
+            command.IsTimeLimited, command.TimeLimitSeconds);
 
         await _unitOfWork.QuestionRepository.AddAsync(Question);
 

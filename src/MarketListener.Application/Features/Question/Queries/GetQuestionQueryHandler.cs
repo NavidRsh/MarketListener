@@ -33,7 +33,7 @@ public sealed class GetQuestionQueryHandler : IRequestHandler<GetQuestionQuery, 
             Id = item.Id,
             IsTimeLimited = item.IsTimeLimited,
             QuestionType = item.QuestionType,
-            Tags = item.Tags,
+            Tags = item.Tags != null ? item.Tags.Select(a => a.Code).ToList() : new List<string>(),
             Text = item.Text,
             TimeLimitSeconds = item.TimeLimitSeconds,
             Title = item.Title

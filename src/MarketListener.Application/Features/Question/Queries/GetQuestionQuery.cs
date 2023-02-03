@@ -4,6 +4,7 @@ using MarketListener.Domain.Common;
 using MarketListener.Domain.Entities;
 using MarketListener.Domain.Enums;
 using MarketListener.Domain.Enums.Error;
+using MarketListener.Domain.ValueObjects;
 using MediatR;
 using Sieve.Models;
 using System.Collections.Generic;
@@ -28,3 +29,5 @@ public sealed class GetQuestionQueryDto : ApplicationDto
         
     }
 }
+
+
