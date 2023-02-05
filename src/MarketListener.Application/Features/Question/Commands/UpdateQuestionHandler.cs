@@ -21,12 +21,23 @@ public sealed class UpdateQuestionHandler : IRequestHandler<UpdateQuestionComman
 
     public async Task<UpdateQuestionDto> Handle(UpdateQuestionCommand command, CancellationToken cancellationToken)
     {
-        var Question = await _unitOfWork.QuestionRepository.GetAsync(command.Id);
+        var Question = await _unitOfWork.QuestionRepository.GetQuestionAsync(command.Id);
         if (Question is null)
             return new UpdateQuestionDto(Status.BadRequest, Resources.QuestionNotFound);
 
-        Question.Update(command.Title, command.Text, command.QuestionType, command.Tags.Select(a => TagLabel.Create(a)).ToList(),
+        Question.Update(command.Title, command.Text, command.QuestionType, 
+            command.Tags.Select(a => TagLabel.Create(a)).ToList(),
             command.IsTimeLimited, command.TimeLimitSeconds);
+
+        Question.Answers.Clear();
+        _unitOfWork.QuestionRepository.RemoveAnswers(command.Id);
+
+        Question.Answers.AddRange(command.Answers.Select(a => new Answer()
+        {
+            IsRightAnswer = a.IsRightAnswer,
+            Order = a.Order,
+            Text = a.Text            
+        }).ToList());
 
         await _unitOfWork.SaveChangesAsync();
 

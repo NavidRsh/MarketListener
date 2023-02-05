@@ -24,10 +24,18 @@ public sealed class GetQuestionQueryDto : ApplicationDto
     public List<string> Tags { get; set; } = default!;
     public bool IsTimeLimited { get; set; }
     public int TimeLimitSeconds { get; set; }
+    public List<QuestionAnswerDtoItem> Answers { get; set; } = default!;
     public GetQuestionQueryDto(Status status, string message = "") : base(status, message)
     {
         
     }
+}
+
+public class QuestionAnswerDtoItem
+{
+    public string Text { get; set; } = default!;
+    public bool IsRightAnswer { get; set; }
+    public int Order { get; set; }
 }
 
 

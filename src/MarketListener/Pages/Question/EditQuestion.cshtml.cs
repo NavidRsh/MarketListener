@@ -28,8 +28,12 @@ namespace MarketListener.Pages.Question
         public async Task OnGet()
         {
             var question = await _mediator.Send(new GetQuestionQuery() { Id = Id });
-            var tags = await _mediator.Send(new ListTagQuery());            
-            EditQuestionViewModel = new EditQuestionViewModel(tags.List);
+
+            var allTags = await _mediator.Send(new ListTagQuery());            
+            EditQuestionViewModel = new EditQuestionViewModel(allTags.List);
+
+            var rightAnswer = question.Answers.Where(a => a.IsRightAnswer).FirstOrDefault();
+            var wrongAnswers = question.Answers.Where(a => !a.IsRightAnswer).ToList(); 
 
             EditQuestionViewModel.Question = new QuestionInfo()
             {
@@ -39,21 +43,12 @@ namespace MarketListener.Pages.Question
                 Tags = question.Tags,
                 Text = question.Text,
                 TimeLimitSeconds = question.TimeLimitSeconds,
-                Title = question.Title
+                Title = question.Title,
+                RightAnswer = rightAnswer?.Text,
+                WrongAnswer1 = wrongAnswers.Count > 0 ? wrongAnswers[0].Text : "",
+                WrongAnswer2 = wrongAnswers.Count > 1 ? wrongAnswers[1].Text : "",
+                WrongAnswer3 = wrongAnswers.Count > 2 ? wrongAnswers[2].Text : "",
             };
-            //Tags = tags.List.Select(a => new TagInfo()
-            //{
-            //    Id = a.Id,
-            //    Name = a.Name,
-            //    PersianName = a.PersianName,
-            //    Code = a.Code,
-            //    ParentId = a.ParentId,
-            //    Category = a.Category,
-            //    ParentName = a.ParentName
-            //}).ToList(),
-            //AllTags = new SelectList(tags.List, "Code", "Name")
-
-
         }
 
         public async Task<IActionResult> OnPostEdit()
@@ -68,7 +63,29 @@ namespace MarketListener.Pages.Question
                 Text = EditQuestionViewModel.Question.Text,
                 TimeLimitSeconds = EditQuestionViewModel.Question.TimeLimitSeconds,
                 Title = EditQuestionViewModel.Question.Title,
-                Tags = EditQuestionViewModel.Question.Tags
+                Tags = EditQuestionViewModel.Question.Tags,
+                Answers = new List<UpdateQuestionAnswerDto>() {
+                    new UpdateQuestionAnswerDto(){
+                        IsRightAnswer = true, 
+                        Order = 1,
+                        Text = EditQuestionViewModel.Question.RightAnswer
+                    },
+                    new UpdateQuestionAnswerDto(){
+                        IsRightAnswer = false,
+                        Order = 2,
+                        Text = EditQuestionViewModel.Question.WrongAnswer1
+                    },
+                    new UpdateQuestionAnswerDto(){
+                        IsRightAnswer = false,
+                        Order = 3,
+                        Text = EditQuestionViewModel.Question.WrongAnswer2
+                    },
+                    new UpdateQuestionAnswerDto(){
+                        IsRightAnswer = false,
+                        Order = 4,
+                        Text = EditQuestionViewModel.Question.WrongAnswer3
+                    }
+                }
             });
 
             return RedirectToPage("Questions");

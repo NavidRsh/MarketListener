@@ -1,4 +1,6 @@
 using MarketListener.Application.Features.Question.Commands;
+using MarketListener.Application.Features.Tag.Queries;
+using MarketListener.Domain.Entities;
 using MarketListener.ViewModels.Question;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +21,7 @@ namespace MarketListener.Pages.Question
         }
         public void OnGet()
         {
+            EditQuestionViewModel = new EditQuestionViewModel(new List<ListTagQueryDtoItem>());
         }
 
         public async Task<IActionResult> OnPost()
@@ -30,7 +33,8 @@ namespace MarketListener.Pages.Question
                     Text=EditQuestionViewModel.Question.Text,
                     TimeLimitSeconds=EditQuestionViewModel.Question.TimeLimitSeconds,
                     IsTimeLimited=EditQuestionViewModel.Question.IsTimeLimited,
-                    QuestionType=EditQuestionViewModel.Question.QuestionType
+                    QuestionType=EditQuestionViewModel.Question.QuestionType,
+                    Tags = EditQuestionViewModel.Question.Tags
                 });
 
                 return RedirectToPage("Questions");

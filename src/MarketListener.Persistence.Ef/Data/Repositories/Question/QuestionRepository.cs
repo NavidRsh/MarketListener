@@ -16,13 +16,19 @@ public sealed class QuestionRepository : EfRepository<Question, int>, IQuestionR
         _processor = processor;
     }
 
-    public async Task<List<ListQuestionQueryDtoItem>> GetQuestionList(SieveModel sieveModel)
+    public async Task<Question?> GetQuestionAsync(int id)
+    {
+        return await _dbContext.Questions.Where(a => a.Id == id)
+            .Include(a => a.Answers).FirstOrDefaultAsync(); 
+    }
+
+    public async Task<List<ListQuestionQueryDtoItem>> GetQuestionListAsync(SieveModel sieveModel)
     {
         return sieveModel != null ? await _processor.Apply(sieveModel, GetQuestionsQueryable()).ToListAsync()
             : await GetQuestionsQueryable().ToListAsync();
     }
 
-    public async Task<long> GetQuestionCount(SieveModel sieveModel)
+    public async Task<long> GetQuestionCountAsync(SieveModel sieveModel)
     {
         return await _processor.Apply(sieveModel, GetQuestionsQueryable(), applyPagination: false).CountAsync();
     }
@@ -41,5 +47,11 @@ public sealed class QuestionRepository : EfRepository<Question, int>, IQuestionR
                 Text= a.Text,
                 Tags = a.Tags
             });
+    }
+
+    public void RemoveAnswers(int questionId)
+    {
+        _dbContext.Answers
+            .RemoveRange(_dbContext.Answers.Where(a => a.QuestionId == questionId));
     }
 }

@@ -20,19 +20,7 @@ namespace MarketListener.ViewModels.Question
         public EditQuestionViewModel(IEnumerable<ListTagQueryDtoItem> alltags)
         {
             AllTags = new SelectList(alltags, "Code", "Name");
-        }
-        //public async static Task<EditQuestionViewModel> Create(IMediator _mediator)
-        //{
-        //    var tags = await _mediator.Send(new ListTagQuery());
-        //    return new EditQuestionViewModel(tags.List);
-        //}
-
-        //public List<SelectListItem> AllTags { get; } = new List<SelectListItem>
-        //{
-        //    new SelectListItem { Value = "MX", Text = "Mexico" },
-        //    new SelectListItem { Value = "CA", Text = "Canada" },
-        //    new SelectListItem { Value = "US", Text = "USA"  },
-        //};
+        }        
     }
 
     public class QuestionInfo
@@ -45,16 +33,9 @@ namespace MarketListener.ViewModels.Question
         public bool IsTimeLimited { get; set; }
         public int TimeLimitSeconds { get; set; }
         public int CurrentUserId { get; set; }
-    }
-
-    //public class TagInfo
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    public string PersianName { get; set; }
-    //    public string Code { get; set; }
-    //    public string Category { get; set; }
-    //    public int? ParentId { get; set; }
-    //    public string ParentName { get; set; }
-    //}
+        public string RightAnswer { get; set; }
+        public string WrongAnswer1 { get; set; }
+        public string WrongAnswer2 { get; set; }
+        public string WrongAnswer3 { get; set; }
+    }    
 }

@@ -5,7 +5,6 @@ using MarketListener.Application.Gateways.Repositories;
 using MarketListener.Application.Gateways.Repositories.Answer;
 using MarketListener.Application.Gateways.Repositories.Question;
 using MarketListener.Application.Gateways.Repositories.User;
-using MarketListener.Persistence.Ef.Data.Repositories.Answer;
 using MarketListener.Persistence.Ef.Data.Repositories.Question;
 using MarketListener.Persistence.Ef.Data.Repositories.User;
 using MarketListener.Persistence.Ef.IdentityEntities;
@@ -25,8 +24,6 @@ public class UnitOfWork : IUnitOfWork
     private readonly IMapper _mapper;    
 
     public IQuestionRepository QuestionRepository => new QuestionRepository(_appDbContext, _processor);
-
-    public IAnswerRepository AnswerRepository => new AnswerRepository(_appDbContext, _processor);
 
     public IUserRepository UserRepository => new UserRepository(_appDbContext, _mapper);
 

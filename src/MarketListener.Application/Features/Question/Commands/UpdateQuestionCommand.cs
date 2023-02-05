@@ -16,8 +16,16 @@ public sealed class UpdateQuestionCommand : IRequest<UpdateQuestionDto>
     public List<string> Tags { get; set; } = default!;
     public bool IsTimeLimited { get; set; }
     public int TimeLimitSeconds { get; set; }
-
+    public List<UpdateQuestionAnswerDto> Answers { get; set; } = new(); 
 }
+
+public class UpdateQuestionAnswerDto
+{
+    public string Text { get; set; } = default!;
+    public bool IsRightAnswer { get; set; }
+    public int Order { get; set; }
+}
+
 
 public sealed class UpdateQuestionDto : ApplicationDto
 {    

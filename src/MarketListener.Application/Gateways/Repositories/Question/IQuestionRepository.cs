@@ -6,6 +6,8 @@ using Sieve.Models;
 
 public interface IQuestionRepository : IGenericRepository<Question, int>
 {
-    Task<List<ListQuestionQueryDtoItem>> GetQuestionList(SieveModel sieveModel);
-    Task<long> GetQuestionCount(SieveModel sieveModel);
+    Task<Question?> GetQuestionAsync(int id);
+    Task<List<ListQuestionQueryDtoItem>> GetQuestionListAsync(SieveModel sieveModel);
+    Task<long> GetQuestionCountAsync(SieveModel sieveModel);
+    void RemoveAnswers(int questionId);
 }

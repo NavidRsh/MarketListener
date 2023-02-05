@@ -23,6 +23,20 @@
         </select>
     </div>
     <div class="mb-3">
+        <label asp-for="@Model.Question.QuestionType">Right Answer</label>
+        <input asp-for="@Model.Question.RightAnswer" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Question.QuestionType">Wrong Answers</label>
+        <input asp-for="@Model.Question.WrongAnswer1" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <input asp-for="@Model.Question.WrongAnswer2" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <input asp-for="@Model.Question.WrongAnswer3" class="form-control" />
+    </div>
+    <div class="mb-3">
         <input asp-for="@Model.Question.IsTimeLimited" type="checkbox" name="IsTimeLimited" value="true" id="time-limited-checkbox" />
         <label asp-for="@Model.Question.IsTimeLimited">Is Time Limited?</label>
     </div>
@@ -30,7 +44,6 @@
         <label asp-for="@Model.Question.TimeLimitSeconds">Seconds</label>
         <input asp-for="@Model.Question.TimeLimitSeconds" class="form-control" />
     </div>
-
     <div class="mb-3">
         <label>Tags</label>
         <select asp-for="Question.Tags" asp-items="Model.AllTags" id="tags" placeholder="select tags" class="form-control dropdown" multiple>

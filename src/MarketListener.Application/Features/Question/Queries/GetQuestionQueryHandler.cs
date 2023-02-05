@@ -22,7 +22,7 @@ public sealed class GetQuestionQueryHandler : IRequestHandler<GetQuestionQuery, 
     }
     public async Task<GetQuestionQueryDto> Handle(GetQuestionQuery request, CancellationToken cancellationToken)
     {
-        var item = await _QuestionRepository.GetAsync(request.Id);
+        var item = await _QuestionRepository.GetQuestionAsync(request.Id);
         if(item == null)
         {
             return new GetQuestionQueryDto(Status.NotFound); 
@@ -36,7 +36,12 @@ public sealed class GetQuestionQueryHandler : IRequestHandler<GetQuestionQuery, 
             Tags = item.Tags != null ? item.Tags.Select(a => a.Code).ToList() : new List<string>(),
             Text = item.Text,
             TimeLimitSeconds = item.TimeLimitSeconds,
-            Title = item.Title
+            Title = item.Title,
+            Answers = item.Answers.Select(a => new QuestionAnswerDtoItem() { 
+                IsRightAnswer = a.IsRightAnswer,
+                Order = a.Order,
+                Text = a.Text
+            }).ToList()
         };
     }
 }

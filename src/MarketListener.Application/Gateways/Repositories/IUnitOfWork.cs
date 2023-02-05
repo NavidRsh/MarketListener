@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 public interface IUnitOfWork
 {
-    IAnswerRepository AnswerRepository { get; }
-
     IQuestionRepository QuestionRepository { get; }
 
     void SaveChanges();
