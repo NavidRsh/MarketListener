@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 
 public class Word : Entity<int>
 {
-    public string Text { get; set; }
+    public string Text { get; private set; }
     
-    public WordType WordType { get; set; }
+    public WordType WordType { get; private set; }
 
-    public List<Tag> Tags { get; set; }
+    public List<Tag> Tags { get; private set; }
+
+    public bool IsActive { get; private set; }
 }

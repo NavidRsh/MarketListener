@@ -5,17 +5,27 @@
     <hr />
 
     <div class="row">
-            <div class="col-md-6">
-                <partial name="QuestionForm" model=@Model.EditQuestionViewModel></partial>
-            </div>
-            <div class="col-md-6">
-                <partial name="HelpWidget"></partial>
-            </div>
+        <div class="col-md-12">
+            <partial name="QuestionForm" model=@Model.EditQuestionViewModel></partial>
+        </div>        
     </div>
 }
 
 @section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
     <script>
+        $(document).ready(function () {
+            $('#explanation').summernote({
+                placeholder: 'Write a brief explanation for the question',
+                tabsize: 2,
+                height: 100
+            });
+        });
+
         $(function () {
             $('#time-limited-checkbox').click(function () {
                 if (this.checked) $('#seconds-division').show();

@@ -20,7 +20,6 @@ public static class QuestionEndpoints
 
         group.MapPost("/", async (IMediator mediator, HttpContext context) =>
         {
-            
             var draw = context.Request.Form["draw"].FirstOrDefault();
             var start = context.Request.Form["start"].FirstOrDefault();
             var length = context.Request.Form["length"].FirstOrDefault();
@@ -31,10 +30,16 @@ public static class QuestionEndpoints
 
             int recordsTotal = 0;
 
+            //var length = "10";
+            //var start = "1";
+            //var draw = "1";
+
+
             ListQuestionQuery query = new ListQuestionQuery() { 
                 SieveModel = new Sieve.Models.SieveModel() { 
                     PageSize = length != null ? Convert.ToInt32(length) : 10,
-                    Page = (start != null && start != "0") ? (Convert.ToInt32(start) / Convert.ToInt32(length)) + 1 : 1
+                    Page = (start != null && start != "0") ? (Convert.ToInt32(start) / Convert.ToInt32(length)) + 1 : 1, 
+                    Filters = !string.IsNullOrEmpty(searchValue) ? "Text@=" + searchValue : ""
                 },
                 Draw = Convert.ToInt32(draw)
             }; 

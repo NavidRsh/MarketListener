@@ -9,6 +9,7 @@ using Gateways.Repositories;
 using MediatR;
 using Domain.Common;
 using MarketListener.Domain.ValueObjects;
+using static System.Net.Mime.MediaTypeNames;
 
 public sealed class UpdateQuestionHandler : IRequestHandler<UpdateQuestionCommand, UpdateQuestionDto>
 {
@@ -21,23 +22,22 @@ public sealed class UpdateQuestionHandler : IRequestHandler<UpdateQuestionComman
 
     public async Task<UpdateQuestionDto> Handle(UpdateQuestionCommand command, CancellationToken cancellationToken)
     {
-        var Question = await _unitOfWork.QuestionRepository.GetQuestionAsync(command.Id);
-        if (Question is null)
+        var question = await _unitOfWork.QuestionRepository.GetQuestionAsync(command.Id);
+        if (question is null)
             return new UpdateQuestionDto(Status.BadRequest, Resources.QuestionNotFound);
 
-        Question.Update(command.Title, command.Text, command.QuestionType, 
-            command.Tags.Select(a => TagLabel.Create(a)).ToList(),
-            command.IsTimeLimited, command.TimeLimitSeconds);
+        question.Update(command.Title, command.Text, command.QuestionType, 
+            command.Tags != null ? command.Tags.Select(a => TagLabel.Create(a)).ToList() : new List<TagLabel>(),
+            command.IsTimeLimited, command.TimeLimitSeconds, command.Explanation);
 
-        Question.Answers.Clear();
-        _unitOfWork.QuestionRepository.RemoveAnswers(command.Id);
+        question.Answers.Clear();
+        _unitOfWork.QuestionRepository
+            .RemoveAnswers(command.Id);
 
-        Question.Answers.AddRange(command.Answers.Select(a => new Answer()
-        {
-            IsRightAnswer = a.IsRightAnswer,
-            Order = a.Order,
-            Text = a.Text            
-        }).ToList());
+        question.Answers
+            .AddRange(command.Answers.Where(a => !string.IsNullOrEmpty(a.Text))
+            .Select(a => Answer.Create(a.Text, question.Id, a.IsRightAnswer, a.Order))
+            .ToList());
 
         await _unitOfWork.SaveChangesAsync();
 

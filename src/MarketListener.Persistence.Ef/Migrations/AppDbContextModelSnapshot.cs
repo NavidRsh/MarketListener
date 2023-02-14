@@ -155,6 +155,13 @@ namespace MarketListener.Persistence.Ef.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2(1)");
 
+                    b.Property<string>("Explanation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsTimeLimited")
                         .HasColumnType("bit");
 
@@ -302,6 +309,176 @@ namespace MarketListener.Persistence.Ef.Migrations
                             Name = "IELTS Academic Band Score 5",
                             ParentId = 3,
                             PersianName = "نمره ۵ آیلتس"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Category = "",
+                            Code = "IEL-GE-8",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Band Score 8",
+                            ParentId = 4,
+                            PersianName = "نمره ۸ آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Category = "",
+                            Code = "IEL-GE-7",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Band Score 7",
+                            ParentId = 4,
+                            PersianName = "نمره ۷ آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Category = "",
+                            Code = "IEL-GE-6",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Band Score 6",
+                            ParentId = 4,
+                            PersianName = "نمره ۶ آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Category = "",
+                            Code = "IEL-GE-5",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Band Score 5",
+                            ParentId = 4,
+                            PersianName = "نمره ۵ آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Category = "",
+                            Code = "IEL-AC-SP",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS Academic Speaking",
+                            ParentId = 3,
+                            PersianName = "مکالمه آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Category = "",
+                            Code = "IEL-AC-LI",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS Academic Listening",
+                            ParentId = 3,
+                            PersianName = "شنیداری آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Category = "",
+                            Code = "IEL-AC-WR",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS Academic Writing",
+                            ParentId = 3,
+                            PersianName = "نوشتاری آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Category = "",
+                            Code = "IEL-AC-RE",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS Academic Reading",
+                            ParentId = 3,
+                            PersianName = "خواندنی آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Category = "",
+                            Code = "IEL-GE-SP",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Speaking",
+                            ParentId = 4,
+                            PersianName = "مکالمه آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Category = "",
+                            Code = "IEL-GE-LI",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Listening",
+                            ParentId = 4,
+                            PersianName = "شنیداری آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Category = "",
+                            Code = "IEL-GE-WR",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Writing",
+                            ParentId = 4,
+                            PersianName = "نوشتاری آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Category = "",
+                            Code = "IEL-GE-RE",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "IELTS General Reading",
+                            ParentId = 4,
+                            PersianName = "خواندنی آیلتس جنرال"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Category = "",
+                            Code = "TRV",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Travel",
+                            ParentId = 1,
+                            PersianName = "مسافرت"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Category = "",
+                            Code = "GRT",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Greeting",
+                            ParentId = 1,
+                            PersianName = "احوالپرسی"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Category = "",
+                            Code = "EAT",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Eating Out",
+                            ParentId = 1,
+                            PersianName = "رستوران"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Category = "",
+                            Code = "APT",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Airport",
+                            ParentId = 1,
+                            PersianName = "فرودگاه"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Category = "",
+                            Code = "WRK",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Working",
+                            ParentId = 1,
+                            PersianName = "کار و مشاغل"
                         });
                 });
 
@@ -315,6 +492,9 @@ namespace MarketListener.Persistence.Ef.Migrations
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2(1)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifyTime")
                         .HasColumnType("datetime2(1)");
@@ -566,9 +746,9 @@ namespace MarketListener.Persistence.Ef.Migrations
             modelBuilder.Entity("MarketListener.Domain.Entities.Answer", b =>
                 {
                     b.HasOne("MarketListener.Domain.Entities.Question", "Question")
-                        .WithMany()
+                        .WithMany("Answers")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Question");
@@ -715,6 +895,11 @@ namespace MarketListener.Persistence.Ef.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MarketListener.Domain.Entities.Question", b =>
+                {
+                    b.Navigation("Answers");
                 });
 #pragma warning restore 612, 618
         }

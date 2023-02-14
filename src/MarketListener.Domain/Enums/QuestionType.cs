@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 
 public enum QuestionType
 {
-    SimpleFourOptions = 1
+    SimpleFourOptions = 1, 
+    Wordle = 2
+
 }

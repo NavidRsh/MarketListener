@@ -21,11 +21,12 @@ public sealed class AddQuestionHandler : IRequestHandler<AddQuestionCommand, Add
 
     public async Task<AddQuestionDto> Handle(AddQuestionCommand command, CancellationToken cancellationToken)
     {
-        var tags = new List<string>(); 
-
         var Question = Domain.Entities.Question.Create(command.Title, command.Text, command.QuestionType, 
-            tags.Select(a => TagLabel.Create(a)).ToList(), 
-            command.IsTimeLimited, command.TimeLimitSeconds);
+            command.Tags.Select(a => TagLabel.Create(a)).ToList(), 
+            command.IsTimeLimited, 
+            command.TimeLimitSeconds,
+            command.Explanation,
+            command.Answers.Select(a => Answer.Create(a.Text, 0, a.IsRightAnswer, a.Order)).ToList());
 
         await _unitOfWork.QuestionRepository.AddAsync(Question);
 

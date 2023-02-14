@@ -16,6 +16,7 @@ public sealed class UpdateQuestionCommand : IRequest<UpdateQuestionDto>
     public List<string> Tags { get; set; } = default!;
     public bool IsTimeLimited { get; set; }
     public int TimeLimitSeconds { get; set; }
+    public string Explanation { get; set; }
     public List<UpdateQuestionAnswerDto> Answers { get; set; } = new(); 
 }
 

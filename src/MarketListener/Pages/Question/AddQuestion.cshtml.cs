@@ -14,7 +14,7 @@ namespace MarketListener.Pages.Question
 
         [BindProperty]
         public EditQuestionViewModel EditQuestionViewModel { get; set; }
-        
+
         public AddQuestionModel(IMediator mediator)
         {
             _mediator = mediator;
@@ -28,13 +28,15 @@ namespace MarketListener.Pages.Question
         {
             if (ModelState.IsValid)
             {
-                await _mediator.Send(new AddQuestionCommand() { 
-                    Title= EditQuestionViewModel.Question.Title,
-                    Text=EditQuestionViewModel.Question.Text,
-                    TimeLimitSeconds=EditQuestionViewModel.Question.TimeLimitSeconds,
-                    IsTimeLimited=EditQuestionViewModel.Question.IsTimeLimited,
-                    QuestionType=EditQuestionViewModel.Question.QuestionType,
-                    Tags = EditQuestionViewModel.Question.Tags
+                await _mediator.Send(new AddQuestionCommand()
+                {
+                    Title = EditQuestionViewModel.Question.Title,
+                    Text = EditQuestionViewModel.Question.Text,
+                    Explanation = EditQuestionViewModel.Question.Explanation ?? "",
+                    TimeLimitSeconds = EditQuestionViewModel.Question.TimeLimitSeconds,
+                    IsTimeLimited = EditQuestionViewModel.Question.IsTimeLimited,
+                    QuestionType = EditQuestionViewModel.Question.QuestionType,
+                    Tags = EditQuestionViewModel.Question.Tags ?? new List<string>()
                 });
 
                 return RedirectToPage("Questions");

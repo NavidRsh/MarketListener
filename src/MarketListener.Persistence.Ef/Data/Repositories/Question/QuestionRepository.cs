@@ -44,6 +44,7 @@ public sealed class QuestionRepository : EfRepository<Question, int>, IQuestionR
                 IsTimeLimited = a.IsTimeLimited,
                 QuestionType = a.QuestionType,
                 TimeLimitSeconds= a.TimeLimitSeconds,
+                IsActive = a.IsActive,
                 Text= a.Text,
                 Tags = a.Tags
             });

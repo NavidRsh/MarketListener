@@ -15,7 +15,7 @@ namespace MarketListener.Pages.Question
         [FromRoute]
         public int Id { get; set; }
         [BindProperty]
-        public EditQuestionViewModel EditQuestionViewModel { get; set; } 
+        public EditQuestionViewModel EditQuestionViewModel { get; set; }
 
         private readonly IMediator _mediator;
         public EditQuestionModel(IMediator mediator)
@@ -23,37 +23,20 @@ namespace MarketListener.Pages.Question
             _mediator = mediator;
 
             //var tags = _mediator.Send(new ListTagQuery()).Result;
-            
+
         }
         public async Task OnGet()
         {
-            var question = await _mediator.Send(new GetQuestionQuery() { Id = Id });
-
-            var allTags = await _mediator.Send(new ListTagQuery());            
-            EditQuestionViewModel = new EditQuestionViewModel(allTags.List);
-
-            var rightAnswer = question.Answers.Where(a => a.IsRightAnswer).FirstOrDefault();
-            var wrongAnswers = question.Answers.Where(a => !a.IsRightAnswer).ToList(); 
-
-            EditQuestionViewModel.Question = new QuestionInfo()
-            {
-                Id = question.Id,
-                IsTimeLimited = question.IsTimeLimited,
-                QuestionType = question.QuestionType,
-                Tags = question.Tags,
-                Text = question.Text,
-                TimeLimitSeconds = question.TimeLimitSeconds,
-                Title = question.Title,
-                RightAnswer = rightAnswer?.Text,
-                WrongAnswer1 = wrongAnswers.Count > 0 ? wrongAnswers[0].Text : "",
-                WrongAnswer2 = wrongAnswers.Count > 1 ? wrongAnswers[1].Text : "",
-                WrongAnswer3 = wrongAnswers.Count > 2 ? wrongAnswers[2].Text : "",
-            };
+            await FillViewModel();
         }
 
         public async Task<IActionResult> OnPostEdit()
         {
-            if (!ModelState.IsValid) { return Page(); }
+            if (!ModelState.IsValid)
+            {
+                await FillTags();
+                return Page();
+            }
 
             await _mediator.Send(new UpdateQuestionCommand()
             {
@@ -63,10 +46,11 @@ namespace MarketListener.Pages.Question
                 Text = EditQuestionViewModel.Question.Text,
                 TimeLimitSeconds = EditQuestionViewModel.Question.TimeLimitSeconds,
                 Title = EditQuestionViewModel.Question.Title,
-                Tags = EditQuestionViewModel.Question.Tags,
+                Tags = EditQuestionViewModel.Question.Tags ?? new List<string>(),
+                Explanation = EditQuestionViewModel.Question.Explanation ?? "",
                 Answers = new List<UpdateQuestionAnswerDto>() {
                     new UpdateQuestionAnswerDto(){
-                        IsRightAnswer = true, 
+                        IsRightAnswer = true,
                         Order = 1,
                         Text = EditQuestionViewModel.Question.RightAnswer
                     },
@@ -98,5 +82,42 @@ namespace MarketListener.Pages.Question
             return RedirectToPage("Questions");
 
         }
+
+        private async Task FillViewModel()
+        {
+            var question = await _mediator.Send(new GetQuestionQuery() { Id = Id });
+
+            var allTags = await _mediator.Send(new ListTagQuery());
+            EditQuestionViewModel = new EditQuestionViewModel(allTags.List);
+
+            var rightAnswer = question.Answers.Where(a => a.IsRightAnswer).FirstOrDefault();
+            var wrongAnswers = question.Answers.Where(a => !a.IsRightAnswer).ToList();
+
+            EditQuestionViewModel.Question = new QuestionInfo()
+            {
+                Id = question.Id,
+                IsTimeLimited = question.IsTimeLimited,
+                QuestionType = question.QuestionType,
+                Tags = question.Tags,
+                Text = question.Text,
+                TimeLimitSeconds = question.TimeLimitSeconds,
+                Explanation = question.Explanation,
+                Title = question.Title,
+                RightAnswer = rightAnswer?.Text,
+                WrongAnswer1 = wrongAnswers.Count > 0 ? wrongAnswers[0].Text : "",
+                WrongAnswer2 = wrongAnswers.Count > 1 ? wrongAnswers[1].Text : "",
+                WrongAnswer3 = wrongAnswers.Count > 2 ? wrongAnswers[2].Text : "",
+            };
+        }
+
+        private async Task FillTags()
+        {
+            var allTags = await _mediator.Send(new ListTagQuery());
+            if (EditQuestionViewModel != null)
+            {
+                EditQuestionViewModel.AllTags = new SelectList(allTags.List, "Code", "Name");
+            }
+        }
+
     }
 }

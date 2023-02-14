@@ -24,6 +24,7 @@ public sealed class GetQuestionQueryDto : ApplicationDto
     public List<string> Tags { get; set; } = default!;
     public bool IsTimeLimited { get; set; }
     public int TimeLimitSeconds { get; set; }
+    public string Explanation { get; set; }
     public List<QuestionAnswerDtoItem> Answers { get; set; } = default!;
     public GetQuestionQueryDto(Status status, string message = "") : base(status, message)
     {

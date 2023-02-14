@@ -5,6 +5,11 @@
     {
       "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "font-awesome@6.3.0",
+      "destination": "wwwroot/lib/font-awesome/"
     }
   ]
 }

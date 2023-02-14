@@ -37,6 +37,7 @@ public sealed class GetQuestionQueryHandler : IRequestHandler<GetQuestionQuery, 
             Text = item.Text,
             TimeLimitSeconds = item.TimeLimitSeconds,
             Title = item.Title,
+            Explanation = item.Explanation,
             Answers = item.Answers.Select(a => new QuestionAnswerDtoItem() { 
                 IsRightAnswer = a.IsRightAnswer,
                 Order = a.Order,

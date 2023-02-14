@@ -17,7 +17,8 @@ public class Question : Entity<int>, IAggregate
     {
 
     }
-    private Question(string title, string text, QuestionType questionType, List<TagLabel> tags, bool isTimeLimited, int timeLimitSeconds)
+    private Question(string title, string text, QuestionType questionType, List<TagLabel> tags,
+        bool isTimeLimited, int timeLimitSeconds, string explanation, List<Answer> answers)
     {
         Title = title;
         Text = text;
@@ -25,11 +26,14 @@ public class Question : Entity<int>, IAggregate
         Tags = tags;
         IsTimeLimited = isTimeLimited;
         TimeLimitSeconds = timeLimitSeconds;
+        Answers = answers;
+        Explanation = explanation;
     }
 
-    public static Question Create(string title, string text, QuestionType questionType, List<TagLabel> tags, bool isTimeLimited, int timeLimitSeconds)
+    public static Question Create(string title, string text, QuestionType questionType,
+        List<TagLabel> tags, bool isTimeLimited, int timeLimitSeconds, string explanation, List<Answer> answers)
     {
-        return new Question(title, text, questionType, tags, isTimeLimited, timeLimitSeconds);
+        return new Question(title, text, questionType, tags, isTimeLimited, timeLimitSeconds, explanation, answers);
     }
 
     public string Title { get; private set; } = default!;
@@ -39,7 +43,9 @@ public class Question : Entity<int>, IAggregate
     public bool IsTimeLimited { get; private set; }
     public int TimeLimitSeconds { get; private set; }
     public List<Answer> Answers { get; private set; }
-    public void Update(string title, string text, QuestionType questionType, List<TagLabel> tags, bool isTimeLimited, int timeLimitSeconds)
+    public bool IsActive { get; private set; }
+    public string Explanation { get; private set; }
+    public void Update(string title, string text, QuestionType questionType, List<TagLabel> tags, bool isTimeLimited, int timeLimitSeconds, string explanation)
     {
         this.Title = title;
         this.Text = text;
@@ -47,5 +53,11 @@ public class Question : Entity<int>, IAggregate
         this.Tags = tags;
         this.IsTimeLimited = isTimeLimited;
         this.TimeLimitSeconds = timeLimitSeconds;
+        this.Explanation = explanation;
+    }
+
+    public void ToggleActive()
+    {
+        this.IsActive = !this.IsActive;
     }
 }
