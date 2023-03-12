@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public abstract class Entity
 {
-    public virtual Entity? Clone()
+    public virtual Entity Clone()
     {
         return MemberwiseClone() as Entity;
     }
