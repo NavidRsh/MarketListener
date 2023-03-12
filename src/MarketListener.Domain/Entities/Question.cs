@@ -42,9 +42,9 @@ public class Question : Entity<int>, IAggregate
     public List<TagLabel> Tags { get; private set; } = default!;
     public bool IsTimeLimited { get; private set; }
     public int TimeLimitSeconds { get; private set; }
-    public List<Answer> Answers { get; private set; }
+    public List<Answer> Answers { get; private set; } = new(); 
     public bool IsActive { get; private set; }
-    public string Explanation { get; private set; }
+    public string Explanation { get; private set; } = default!;
     public void Update(string title, string text, QuestionType questionType, List<TagLabel> tags, bool isTimeLimited, int timeLimitSeconds, string explanation)
     {
         this.Title = title;

@@ -28,11 +28,11 @@ public class Tag : Entity<int>
 
         return tag;
     }
-    public string Name { get; private set; }
-    public string PersianName { get; private set; }
-    public string Code { get; private set; }
-    public string Category { get; private set; }
+    public string Name { get; private set; } = default!;
+    public string PersianName { get; private set; } = default!;
+    public string Code { get; private set; } = default!;
+    public string Category { get; private set; } = default!;
     public int? ParentId { get; private set; }
-    public Tag Parent { get; private set; }
+    public Tag? Parent { get; private set; }
 
 }

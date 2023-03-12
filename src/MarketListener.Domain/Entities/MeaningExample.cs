@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 public class MeaningExample : Entity<int>
 {
-    public string Text { get; set; }
+    public string Text { get; set; } = default!; 
 
     public int MeaningId { get; set; }
 
-    public Meaning Meaning { get; set; }
+    public Meaning Meaning { get; set; } = default!;
 }

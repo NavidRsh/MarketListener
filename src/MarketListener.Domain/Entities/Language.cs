@@ -28,8 +28,8 @@ namespace MarketListener.Domain.Entities
             }            
         }
 
-        public string Name { get; private set; }
+        public string Name { get; private set; } = String.Empty;
 
-        public string Code { get; private set; }
+        public string Code { get; private set; } = String.Empty;
     }
 }

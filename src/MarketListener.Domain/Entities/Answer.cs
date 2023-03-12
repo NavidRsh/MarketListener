@@ -13,7 +13,7 @@ public class Answer : Entity<int>
 {
     public string Text { get; set; } = default!;
     public int QuestionId { get; set; }
-    public Question Question { get; set; }
+    public Question? Question { get; set; }
     public bool IsRightAnswer { get; set; }
     public int Order { get; set; }
 
