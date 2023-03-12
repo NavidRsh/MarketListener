@@ -33,6 +33,6 @@ public class Tag : Entity<int>
     public string Code { get; private set; }
     public string Category { get; private set; }
     public int? ParentId { get; private set; }
-    public Tag? Parent { get; private set; }
+    public Tag Parent { get; private set; }
 
 }

@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 
 public class Word : Entity<int>
 {
+    public Word()
+    {
+        Tags = new List<Tag>();
+        Text = ""; 
+    }
+
     public string Text { get; private set; }
     
     public WordType WordType { get; private set; }
