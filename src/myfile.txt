@@ -1,4 +1,4 @@
 console.log("The project info!")
 console.log("test");
-console.log(""); 
-console.log("new");
+console.log("1"); 
+
