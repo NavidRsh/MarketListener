@@ -2,3 +2,4 @@ console.log("The project info!")
 console.log("test");
 console.log("1"); 
 console.log("market share!"); 
+console.log("for merge");
