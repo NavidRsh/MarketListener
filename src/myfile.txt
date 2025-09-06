@@ -4,4 +4,6 @@ console.log("1");
 console.log("market share!"); 
 console.log("for merge");
 console.log("merged");
+console.log("two");
+
 
