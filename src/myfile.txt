@@ -6,6 +6,3 @@ console.log("for merge");
 console.log("merged");
 console.log("parallel");
 console.log("two");
-
-
-
